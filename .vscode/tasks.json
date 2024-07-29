@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build GoogleTest",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "${workspaceFolder}/test.cpp",
+                "-o",
+                "${workspaceFolder}/test",
+                "-I",
+                "/usr/local/include",
+                "-L",
+                "/usr/local/lib",
+                "-lgtest",
+                "-lgtest_main",
+                "-lpthread"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Generated task for building GoogleTest project"
+        }
+    ]
+}
