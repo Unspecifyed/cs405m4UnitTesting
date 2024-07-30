@@ -2,10 +2,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug GoogleTest",
+            "name": "Debug All",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/test",
+            "program": "${workspaceFolder}/output",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -19,7 +19,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "build GoogleTest",
+            "preLaunchTask": "build All",
             "miDebuggerPath": "/usr/bin/gdb",
             "logging": {
                 "engineLogging": true

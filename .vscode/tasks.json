@@ -2,14 +2,14 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build GoogleTest",
+            "label": "build All",
             "type": "shell",
             "command": "clang++",
             "args": [
                 "-g",
-                "${workspaceFolder}/test.cpp",
+                "${workspaceFolder}/*.cpp",
                 "-o",
-                "${workspaceFolder}/test",
+                "${workspaceFolder}/output",
                 "-I",
                 "/usr/local/include",
                 "-L",
@@ -17,8 +17,8 @@
                 "-lgtest",
                 "-lgtest_main",
                 "-lpthread",
-                "-lssl",      // Add OpenSSL SSL library
-                "-lcrypto"    // Add OpenSSL Crypto library
+                "-lssl",
+                "-lcrypto"
             ],
             "group": {
                 "kind": "build",
