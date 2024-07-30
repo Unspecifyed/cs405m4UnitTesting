@@ -16,17 +16,14 @@
                 "/usr/local/lib",
                 "-lgtest",
                 "-lgtest_main",
-                "-lpthread"
+                "-lpthread",
+                "-lssl",      // Add OpenSSL SSL library
+                "-lcrypto"    // Add OpenSSL Crypto library
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
-            },
-            
-        },
-        
-        
-      
-       
+            }
+        }
     ]
 }
