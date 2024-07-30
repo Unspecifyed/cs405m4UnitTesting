@@ -1,0 +1,106 @@
+{
+    "workbench.colorTheme": "Default High Contrast",
+    "files.autoSave": "afterDelay",
+    "git.enableSmartCommit": true,
+    "git.autofetch": true,
+
+    // C/C++ Flylint Settings
+    "c-cpp-flylint.debug": true,
+    "c-cpp-flylint.ignoreParseErrors": true,
+    "c-cpp-flylint.standard": [
+        "c23",
+        "c++23"
+    ],
+    "c-cpp-flylint.defines": [
+        "USING_PCH" // Define for precompiled headers
+    ],
+    "c-cpp-flylint.includePaths": [
+        "${workspaceFolder}/**",
+        "/usr/local/include",
+        "/usr/include",
+        "/usr/include/llvm-18/llvm",
+        "/usr/include/llvm-c-18/llvm-c",
+        "/usr/include/clang/18.1.8/include",
+        "/usr/lib/llvm-18/include",  // Include LLVM headers
+        "/usr/local/include/gmock",
+        "/usr/local/include/gtest",
+        "/usr/local/include/node"
+    ],
+
+    // Clang Specific Settings
+    "c-cpp-flylint.clang.standard": [
+        "c++23"
+    ],
+    "c-cpp-flylint.clang.defines": [],
+    "c-cpp-flylint.clang.undefines": [],
+    "c-cpp-flylint.clang.language": "",  
+    "c-cpp-flylint.clang.extraArgs": [],
+    "c-cpp-flylint.clang.warnings": [
+        "all",
+        "extra"
+    ],
+    "c-cpp-flylint.clang.includes": [],
+    "c-cpp-flylint.clang.standardLibs": [],  
+    "c-cpp-flylint.clang.pedantic": true,
+    "c-cpp-flylint.clang.pedanticErrors": true,
+    "c-cpp-flylint.clang.msExtensions": false,
+    "c-cpp-flylint.clang.noExceptions": false,
+    "c-cpp-flylint.clang.noRtti": false,
+
+    // Cppcheck Specific Settings
+    "c-cpp-flylint.cppcheck.standard": [
+        "c++23"
+    ],
+    "c-cpp-flylint.cppcheck.defines": [],
+    "c-cpp-flylint.cppcheck.undefines": [],
+    "c-cpp-flylint.cppcheck.suppressions": [],
+    "c-cpp-flylint.cppcheck.addons": [],
+    "c-cpp-flylint.cppcheck.verbose": true,
+    "c-cpp-flylint.cppcheck.language": "c++",  
+    "c-cpp-flylint.cppcheck.inconclusive": true,
+    "c-cpp-flylint.cppcheck.force": true,
+    "c-cpp-flylint.cppcheck.severityLevels": {
+        "error": "Error",
+        "warning": "Warning",
+        "style": "Information",
+        "performance": "Information",
+        "portability": "Information",
+        "information": "Information"
+    },
+
+    // Common Include Paths for Cppcheck and IntelliSense
+    "c-cpp-flylint.cppcheck.includePaths": [
+        "${workspaceFolder}/**",
+        "/usr/local/include",
+        "/usr/include",
+        "/usr/include/llvm-18/llvm",
+        "/usr/include/llvm-c-18/llvm-c",
+        "/usr/include/clang/18.1.8/include",
+        "/usr/lib/llvm-18/include",  // Include LLVM headers
+        "/usr/local/include/gmock",
+        "/usr/local/include/gtest",
+        "/usr/local/include/node"
+    ],
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/**",
+        "/usr/local/include",
+        "/usr/include",
+        "/usr/include/llvm-18/llvm",
+        "/usr/include/llvm-c-18/llvm-c",
+        "/usr/include/clang/18.1.8/include",
+        "/usr/lib/llvm-18/include",  // Include LLVM headers
+        "/usr/local/include/gmock",
+        "/usr/local/include/gtest",
+        "/usr/local/include/node"
+    ],
+
+    // C/C++ Extension Defaults
+    "C_Cpp.default.cppStandard": "c++23",
+    "C_Cpp.default.cStandard": "c23",
+    "C_Cpp.default.customConfigurationVariables": {},
+    "C_Cpp.default.intelliSenseMode": "linux-clang-x64",
+    "C_Cpp.default.mergeConfigurations": true,
+
+    // Disable Flexelint (Commercial Tool)
+    "c-cpp-flylint.flexelint.enable": false
+}

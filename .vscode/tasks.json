@@ -4,7 +4,7 @@
         {
             "label": "build GoogleTest",
             "type": "shell",
-            "command": "g++",
+            "command": "clang++",
             "args": [
                 "-g",
                 "${workspaceFolder}/test.cpp",
@@ -22,8 +22,11 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "problemMatcher": ["$gcc"],
-            "detail": "Generated task for building GoogleTest project"
-        }
+            
+        },
+        
+        
+      
+       
     ]
 }

@@ -1,10 +1,17 @@
-// test.cpp
-// Uncomment the next line to use precompiled headers
-#include "pch.h"
-// uncomment the next line  I did not use precompiled headers
-// I used compiled the libary from the github then linked it with gcc
-// Then I added the mandatory header
-//#include "gtest/gtest.h"
+#include <cstdlib>
+#include <ctime>
+#include "gtest/gtest.h"
+#include <vector>
+#include <memory>
+#include <stdexcept>
+#include <openssl/rand.h>
+
+// Function to generate secure random bytes
+void generate_secure_random_bytes(unsigned char* buffer, int length) {
+    if (RAND_bytes(buffer, length) != 1) {
+        throw std::runtime_error("Error generating secure random bytes.");
+    }
+}
 
 // The global test environment setup and teardown
 class Environment : public ::testing::Environment
@@ -12,14 +19,11 @@ class Environment : public ::testing::Environment
 public:
   ~Environment() override {}
 
-  // Override this to define how to set up the environment.
   void SetUp() override
   {
-    // Initialize random seed
-    srand(time(nullptr));
+    // No specific setup needed for OpenSSL random number generation
   }
 
-  // Override this to define how to tear down the environment.
   void TearDown() override {}
 };
 
@@ -27,47 +31,42 @@ public:
 class CollectionTest : public ::testing::Test
 {
 protected:
-  // Create a smart pointer to hold our collection
   std::unique_ptr<std::vector<int>> collection;
 
   void SetUp() override
   { 
-    // Create a new collection to be used in the test
-    collection.reset(new std::vector<int>);
+    collection = std::make_unique<std::vector<int>>();
   }
 
   void TearDown() override
   { 
-    // Erase all elements in the collection, if any remain
     collection->clear();
-    // Free the pointer
     collection.reset(nullptr);
   }
 
-  // Helper function to add random values from 0 to 99 count times to the collection
+  // Helper function to add secure random values from 0 to 99, count times, to the collection
   void add_entries(int count)
   {
     assert(count > 0);
-    for (auto i = 0; i < count; ++i)
-      collection->push_back(rand() % 100);
+    unsigned char random_byte;
+    for (int i = 0; i < count; ++i) {
+      generate_secure_random_bytes(&random_byte, 1);
+      collection->push_back(random_byte % 100);
+    }
   }
 };
 
 // Test that a collection is created successfully
 TEST_F(CollectionTest, CollectionSmartPointerIsNotNull)
 {
-  // Verify the collection is created
   ASSERT_TRUE(collection);
-  // Verify the pointer is not null
   ASSERT_NE(collection.get(), nullptr);
 }
 
 // Test that a collection is empty when created
 TEST_F(CollectionTest, IsEmptyOnCreate)
 {
-  // Verify the collection is empty
   ASSERT_TRUE(collection->empty());
-  // Verify the size is 0
   ASSERT_EQ(collection->size(), 0);
 }
 
@@ -80,33 +79,26 @@ TEST_F(CollectionTest, AlwaysFail)
 // Test to verify adding a single value to an empty collection
 TEST_F(CollectionTest, CanAddToEmptyVector)
 {
-  // Verify the collection is empty
   ASSERT_TRUE(collection->empty());
   ASSERT_EQ(collection->size(), 0);
 
-  // Add a single entry
   add_entries(1);
 
-  // Verify the collection is not empty
   ASSERT_FALSE(collection->empty());
-  // Verify the size is 1
   ASSERT_EQ(collection->size(), 1);
 }
 
 // Test to verify adding five values to collection
 TEST_F(CollectionTest, CanAddFiveValuesToVector)
 {
-  // Add five entries
   add_entries(5);
-  
-  // Verify the size is 5
   ASSERT_EQ(collection->size(), 5);
 }
 
 // Test to verify that max size is greater than or equal to size for 0, 1, 5, 10 entries
 TEST_F(CollectionTest, MaxSizeIsGreaterOrEqualToSize)
 {
-  std::vector<int>::size_type initial_size = collection->size();
+  EXPECT_GE(collection->max_size(), collection->size());
 
   add_entries(1);
   EXPECT_GE(collection->max_size(), collection->size());
